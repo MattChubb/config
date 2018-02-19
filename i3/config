@@ -1,0 +1,334 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+#
+# This config file uses keycodes (bindsym) and was written for the QWERTY
+# layout.
+#
+# To get a config file with the same key positions, but for your current
+# layout, use the i3-config-wizard
+#
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+#font pango:monospace 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:DejaVu Sans Mono 8
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+#
+# WINDOW MANAGEMENT KEY BINDINGS
+#
+
+# use these keys for focus, movement, and resize directions when reaching for
+# the arrows is not convenient
+set $up l
+set $down k
+set $left j
+set $right semicolon
+
+# use Mouse+Mod4 to drag floating windows to their wanted position
+floating_modifier Mod4
+
+# start a terminal
+bindsym Mod4+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym Mod4+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym Mod4+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym Mod4+$left focus left
+bindsym Mod4+$down focus down
+bindsym Mod4+$up focus up
+bindsym Mod4+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Left focus left
+bindsym Mod4+Down focus down
+bindsym Mod4+Up focus up
+bindsym Mod4+Right focus right
+
+# move focused window
+bindsym Mod4+Shift+$left move left
+bindsym Mod4+Shift+$down move down
+bindsym Mod4+Shift+$up move up
+bindsym Mod4+Shift+$right move right
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Shift+Left move left
+bindsym Mod4+Shift+Down move down
+bindsym Mod4+Shift+Up move up
+bindsym Mod4+Shift+Right move right
+
+# split in horizontal orientation
+bindsym Mod4+h split h
+
+# split in vertical orientation
+bindsym Mod4+v split v
+
+# enter fullscreen mode for the focused container
+bindsym Mod4+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym Mod4+s layout stacking
+bindsym Mod4+w layout tabbed
+bindsym Mod4+e layout toggle split
+
+# toggle tiling / floating
+bindsym Mod4+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym Mod4+space focus mode_toggle
+
+# focus the parent container
+bindsym Mod4+a focus parent
+
+# focus the child container
+#bindsym Mod4+d focus child
+
+# move the currently focused window to the scratchpad
+bindsym Mod4+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym Mod4+minus scratchpad show
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize grow height 10 px or 10 ppt
+        bindsym $up         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize grow height 10 px or 10 ppt
+        bindsym Up          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym Mod4+r mode "resize"
+
+
+#
+# WORKSPACE CONFIG
+#
+
+set $output1 eDP1
+#set $output2 DP2-2
+set $output2 HDMI2
+set $output3 DP2-3
+
+workspace 11 output $output1 
+workspace 12 output $output1 
+workspace 13 output $output1 
+workspace 13 output $output1 
+workspace 14 output $output1 
+workspace 15 output $output1 
+workspace 16 output $output1 
+workspace 17 output $output1 
+workspace 18 output $output1 
+workspace 19 output $output1 
+workspace 20 output $output1 
+
+workspace 21 output $output2  
+workspace 22 output $output2 
+workspace 23 output $output2 
+workspace 23 output $output2 
+workspace 24 output $output2 
+workspace 25 output $output2 
+workspace 26 output $output2 
+workspace 27 output $output2 
+workspace 28 output $output2 
+workspace 29 output $output2 
+workspace 30 output $output2 
+
+workspace 31 output $output3 
+workspace 32 output $output3 
+workspace 33 output $output3 
+workspace 33 output $output3 
+workspace 34 output $output3 
+workspace 35 output $output3 
+workspace 36 output $output3 
+workspace 37 output $output3 
+workspace 38 output $output3 
+workspace 39 output $output3 
+workspace 40 output $output3 
+
+
+#
+# WORKSPACE KEYBINDINGS
+#
+bindsym Mod4+z mode monitor2
+bindsym Mod4+x mode monitor3
+
+# default mode
+#mode "monitor1" {
+    bindsym Mod4+1 workspace 11
+    bindsym Mod4+2 workspace 12
+    bindsym Mod4+3 workspace 13
+    bindsym Mod4+4 workspace 14
+    bindsym Mod4+5 workspace 15
+    bindsym Mod4+6 workspace 16
+    bindsym Mod4+7 workspace 17
+    bindsym Mod4+8 workspace 18
+    bindsym Mod4+9 workspace 19
+    bindsym Mod4+0 workspace 20
+
+    # move focused container to workspace
+    bindsym Mod4+Shift+1 move container to workspace 11
+    bindsym Mod4+Shift+2 move container to workspace 12
+    bindsym Mod4+Shift+3 move container to workspace 13
+    bindsym Mod4+Shift+4 move container to workspace 14
+    bindsym Mod4+Shift+5 move container to workspace 15
+    bindsym Mod4+Shift+6 move container to workspace 16
+    bindsym Mod4+Shift+7 move container to workspace 17
+    bindsym Mod4+Shift+8 move container to workspace 18
+    bindsym Mod4+Shift+9 move container to workspace 19
+    bindsym Mod4+Shift+0 move container to workspace 20
+        # back to normal: Enter or Escape
+#        bindsym Return mode "default"
+#        bindsym Escape mode "default"
+#}
+
+mode "monitor2" {
+    bindsym 1 workspace 21
+    bindsym 2 workspace 22
+    bindsym 3 workspace 23
+    bindsym 4 workspace 24
+    bindsym 5 workspace 25
+    bindsym 6 workspace 26
+    bindsym 7 workspace 27
+    bindsym 8 workspace 28
+    bindsym 9 workspace 29
+    bindsym 0 workspace 30
+
+    # move focused container to workspace
+    bindsym Shift+1 move container to workspace 21
+    bindsym Shift+2 move container to workspace 22
+    bindsym Shift+3 move container to workspace 23
+    bindsym Shift+4 move container to workspace 24
+    bindsym Shift+5 move container to workspace 25
+    bindsym Shift+6 move container to workspace 26
+    bindsym Shift+7 move container to workspace 27
+    bindsym Shift+8 move container to workspace 28
+    bindsym Shift+9 move container to workspace 29
+    bindsym Shift+0 move container to workspace 30
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "monitor3" {
+    bindsym 1 workspace 31
+    bindsym 2 workspace 32
+    bindsym 3 workspace 33
+    bindsym 4 workspace 34
+    bindsym 5 workspace 35
+    bindsym 6 workspace 36
+    bindsym 7 workspace 37
+    bindsym 8 workspace 38
+    bindsym 9 workspace 39
+    bindsym 0 workspace 40
+
+    # move focused container to workspace
+    bindsym Shift+1 move container to workspace 31
+    bindsym Shift+2 move container to workspace 32
+    bindsym Shift+3 move container to workspace 33
+    bindsym Shift+4 move container to workspace 34
+    bindsym Shift+5 move container to workspace 35
+    bindsym Shift+6 move container to workspace 36
+    bindsym Shift+7 move container to workspace 37
+    bindsym Shift+8 move container to workspace 38
+    bindsym Shift+9 move container to workspace 39
+    bindsym Shift+0 move container to workspace 40
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+# Cycle through active workspaces
+bindsym Mod4+Tab workspace next
+bindsym Mod4+Shift+Tab workspace prev
+
+
+
+#
+# I3 MANAGEMENT
+#
+
+# reload the configuration file
+bindsym Mod4+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym Mod4+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Lock screen with Alt-Shift-L
+bindsym Mod1+Shift+l exec i3lock -d -c 000000 -f
+
+
+
+#
+# UI CONFIG
+#
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    status_command i3status -c $HOME/.i3/i3status.conf
+}
+
+# class                 border  backgr. text    indicator child_border
+#client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused          #ffffff #0000ff #000000 #2e9ef4   #285577
+#client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.unfocused        #ffffff #000000 #ffffff #292d2e   #222222
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
+
+
+
+#
+# HARDWARE KEY BINDINGS
+#
+
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# # Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+# # Touchpad controls
