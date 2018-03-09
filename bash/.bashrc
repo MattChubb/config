@@ -1,0 +1,13 @@
+alias g='git'
+alias gg='git grep'
+alias gst='git status'
+alias gco='git checkout'
+alias gd='git diff'
+alias ga='git add'
+alias gcm='git commit -m'
+alias gps='git push'
+alias gpl='git pull'
+alias gsub='git submodule'
+alias master='git checkout master'
+
+alias dockerprune='docker rm $(docker ps -a -q); docker rmi $(docker images | grep "^<none>" | awk "{print $3}")'
