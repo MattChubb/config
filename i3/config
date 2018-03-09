@@ -15,7 +15,7 @@
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 10
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -140,9 +140,14 @@ bindsym Mod4+r mode "resize"
 #
 
 set $output1 eDP1
-#set $output2 DP2-2
-set $output2 HDMI2
+set $output2 DP2-2
+#set $output2 HDMI2
 set $output3 DP2-3
+
+# Command to revert to default i3 display/output config
+bindsym Mod4+bracketleft set $output1 eDP1; set $output2 eDP1; set $output3 eDP1;
+# Command to automagically enable all connected displays
+bindsym Mod4+bracketright exec "xrandr --query | grep -E '(\S*)\sconnected' | grep -oE '^\S*' | xargs -n 1 -t xrandr --auto --output"
 
 workspace 11 output $output1 
 workspace 12 output $output1 
@@ -294,6 +299,8 @@ bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # Lock screen with Alt-Shift-L
 bindsym Mod1+Shift+l exec i3lock -d -c 000000 -f
+# auto lock after 30min
+exec --no-startup-id xautolock -time 30 -locker 'i3lock -d -c 000000 -f'
 
 
 
@@ -305,6 +312,8 @@ bindsym Mod1+Shift+l exec i3lock -d -c 000000 -f
 # finds out, if available)
 bar {
     status_command i3status -c $HOME/.i3/i3status.conf
+    tray_output primary
+    position top
 }
 
 # class                 border  backgr. text    indicator child_border
@@ -318,17 +327,20 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
 
+##Volume icon
+#exec volumeicon
+exec --no-startup-id volumeicon
+
 
 #
 # HARDWARE KEY BINDINGS
 #
 
-
+set $sink `pactl list short sinks | grep RUNNING | cut -f1`
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink toggle # mute sound
 # # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
-# # Touchpad controls
