@@ -28,13 +28,6 @@ font pango:DejaVu Sans Mono 10
 # WINDOW MANAGEMENT KEY BINDINGS
 #
 
-# use these keys for focus, movement, and resize directions when reaching for
-# the arrows is not convenient
-set $up l
-set $down k
-set $left j
-set $right semicolon
-
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier Mod4
 
@@ -52,24 +45,12 @@ bindsym Mod4+d exec dmenu_run
 # bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym Mod4+$left focus left
-bindsym Mod4+$down focus down
-bindsym Mod4+$up focus up
-bindsym Mod4+$right focus right
-
-# alternatively, you can use the cursor keys:
 bindsym Mod4+Left focus left
 bindsym Mod4+Down focus down
 bindsym Mod4+Up focus up
 bindsym Mod4+Right focus right
 
 # move focused window
-bindsym Mod4+Shift+$left move left
-bindsym Mod4+Shift+$down move down
-bindsym Mod4+Shift+$up move up
-bindsym Mod4+Shift+$right move right
-
-# alternatively, you can use the cursor keys:
 bindsym Mod4+Shift+Left move left
 bindsym Mod4+Shift+Down move down
 bindsym Mod4+Shift+Up move up
@@ -96,7 +77,7 @@ bindsym Mod4+Shift+space floating toggle
 bindsym Mod4+space focus mode_toggle
 
 # focus the parent container
-bindsym Mod4+a focus parent
+#bindsym Mod4+a focus parent
 
 # focus the child container
 #bindsym Mod4+d focus child
@@ -141,13 +122,18 @@ bindsym Mod4+r mode "resize"
 
 set $output1 eDP1
 set $output2 DP2-2
-#set $output2 HDMI2
+set $output2b HDMI2
 set $output3 DP2-3
 
 # Command to revert to default i3 display/output config
 bindsym Mod4+bracketleft set $output1 eDP1; set $output2 eDP1; set $output3 eDP1;
 # Command to automagically enable all connected displays
 bindsym Mod4+bracketright exec "xrandr --query | grep -E '(\S*)\sconnected' | grep -oE '^\S*' | xargs -n 1 -t xrandr --auto --output"
+
+# Command to use triple monitor config
+bindsym Mod4+numbersign exec "~/.screenlayout/officedesk.sh"
+bindsym Mod4+apostrophe exec "~/.screenlayout/laptoponly.sh"
+bindsym Mod4+semicolon exec "~/.screenlayout/home.sh"
 
 workspace 11 output $output1 
 workspace 12 output $output1 
@@ -173,6 +159,18 @@ workspace 28 output $output2
 workspace 29 output $output2 
 workspace 30 output $output2 
 
+workspace 21b output $output2b  
+workspace 22b output $output2b 
+workspace 23b output $output2b 
+workspace 23b output $output2b 
+workspace 24b output $output2b 
+workspace 25b output $output2b 
+workspace 26b output $output2b 
+workspace 27b output $output2b 
+workspace 28b output $output2b 
+workspace 29b output $output2b 
+workspace 30b output $output2b 
+
 workspace 31 output $output3 
 workspace 32 output $output3 
 workspace 33 output $output3 
@@ -190,6 +188,7 @@ workspace 40 output $output3
 # WORKSPACE KEYBINDINGS
 #
 bindsym Mod4+z mode monitor2
+bindsym Mod4+a mode monitor2b
 bindsym Mod4+x mode monitor3
 
 # default mode
@@ -244,6 +243,35 @@ mode "monitor2" {
     bindsym Shift+8 move container to workspace 28
     bindsym Shift+9 move container to workspace 29
     bindsym Shift+0 move container to workspace 30
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "monitor2b" {
+    bindsym 1 workspace 21b
+    bindsym 2 workspace 22b
+    bindsym 3 workspace 23b
+    bindsym 4 workspace 24b
+    bindsym 5 workspace 25b
+    bindsym 6 workspace 26b
+    bindsym 7 workspace 27b
+    bindsym 8 workspace 28b
+    bindsym 9 workspace 29b
+    bindsym 0 workspace 30b
+
+    # move focused container to workspace
+    bindsym Shift+1 move container to workspace 21b
+    bindsym Shift+2 move container to workspace 22b
+    bindsym Shift+3 move container to workspace 23b
+    bindsym Shift+4 move container to workspace 24b
+    bindsym Shift+5 move container to workspace 25b
+    bindsym Shift+6 move container to workspace 26b
+    bindsym Shift+7 move container to workspace 27b
+    bindsym Shift+8 move container to workspace 28b
+    bindsym Shift+9 move container to workspace 29b
+    bindsym Shift+0 move container to workspace 30b
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
