@@ -11,3 +11,6 @@ alias gsub='git submodule'
 alias master='git checkout master'
 
 alias dockerprune='docker rm $(docker ps -a -q); docker rmi $(docker images | grep "^<none>" | awk "{print $3}")'
+alias dlf='docker logs -f '
+alias dps='docker ps'
+alias dpsa='docker ps -a'
