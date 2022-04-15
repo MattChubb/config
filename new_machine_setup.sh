@@ -9,3 +9,4 @@ sudo ln -s -d ~/dev/config/i3/* ~/.i3
 
 #vim
 sudo ln -s ~/dev/config/vim/.vimrc ~/
+git clone https://github.com/Raku/vim-raku.git ~/.vim/pack/vim-raku-pack/start/vim-raku
