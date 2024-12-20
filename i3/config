@@ -15,7 +15,8 @@
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 10
+#font pango:DejaVu Sans Mono 10
+font pango:Ionicons 10, Poppins Regular 10
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -38,11 +39,11 @@ bindsym Mod4+Return exec i3-sensible-terminal
 bindsym Mod4+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym Mod4+d exec dmenu_run
+bindsym Mod4+c exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop
+bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym Mod4+Left focus left
@@ -120,13 +121,10 @@ bindsym Mod4+r mode "resize"
 # WORKSPACE CONFIG
 #
 
-set $output1 eDP1
-set $output2 DP2-2
-set $output2b HDMI2
-set $output3 DP2-3
+exec xrandr --output DisplayPort-0 --auto --right-of HDMI-A-0
+set $output1 DisplayPort-0
+set $output2 HDMI-A-0
 
-# Command to revert to default i3 display/output config
-bindsym Mod4+bracketleft set $output1 eDP1; set $output2 eDP1; set $output3 eDP1;
 # Command to automagically enable all connected displays
 bindsym Mod4+bracketright exec "xrandr --query | grep -E '(\S*)\sconnected' | grep -oE '^\S*' | xargs -n 1 -t xrandr --auto --output"
 
@@ -135,61 +133,35 @@ bindsym Mod4+numbersign exec "~/.screenlayout/officedesk.sh"
 bindsym Mod4+apostrophe exec "~/.screenlayout/laptoponly.sh"
 bindsym Mod4+semicolon exec "~/.screenlayout/home.sh"
 
-workspace 11 output $output1 
-workspace 12 output $output1 
-workspace 13 output $output1 
-workspace 13 output $output1 
-workspace 14 output $output1 
-workspace 15 output $output1 
-workspace 16 output $output1 
-workspace 17 output $output1 
-workspace 18 output $output1 
-workspace 19 output $output1 
-workspace 20 output $output1 
+workspace 11 output $output1
+workspace 12 output $output1
+workspace 13 output $output1
+workspace 13 output $output1
+workspace 14 output $output1
+workspace 15 output $output1
+workspace 16 output $output1
+workspace 17 output $output1
+workspace 18 output $output1
+workspace 19 output $output1
+workspace 20 output $output1
 
-workspace 21 output $output2  
-workspace 22 output $output2 
-workspace 23 output $output2 
-workspace 23 output $output2 
-workspace 24 output $output2 
-workspace 25 output $output2 
-workspace 26 output $output2 
-workspace 27 output $output2 
-workspace 28 output $output2 
-workspace 29 output $output2 
-workspace 30 output $output2 
-
-workspace 21b output $output2b  
-workspace 22b output $output2b 
-workspace 23b output $output2b 
-workspace 23b output $output2b 
-workspace 24b output $output2b 
-workspace 25b output $output2b 
-workspace 26b output $output2b 
-workspace 27b output $output2b 
-workspace 28b output $output2b 
-workspace 29b output $output2b 
-workspace 30b output $output2b 
-
-workspace 31 output $output3 
-workspace 32 output $output3 
-workspace 33 output $output3 
-workspace 33 output $output3 
-workspace 34 output $output3 
-workspace 35 output $output3 
-workspace 36 output $output3 
-workspace 37 output $output3 
-workspace 38 output $output3 
-workspace 39 output $output3 
-workspace 40 output $output3 
+workspace 21 output $output2
+workspace 22 output $output2
+workspace 23 output $output2
+workspace 23 output $output2
+workspace 24 output $output2
+workspace 25 output $output2
+workspace 26 output $output2
+workspace 27 output $output2
+workspace 28 output $output2
+workspace 29 output $output2
+workspace 30 output $output2
 
 
 #
 # WORKSPACE KEYBINDINGS
 #
 bindsym Mod4+z mode monitor2
-bindsym Mod4+a mode monitor2b
-bindsym Mod4+x mode monitor3
 
 # default mode
 #mode "monitor1" {
@@ -249,69 +221,11 @@ mode "monitor2" {
     bindsym Escape mode "default"
 }
 
-mode "monitor2b" {
-    bindsym 1 workspace 21b
-    bindsym 2 workspace 22b
-    bindsym 3 workspace 23b
-    bindsym 4 workspace 24b
-    bindsym 5 workspace 25b
-    bindsym 6 workspace 26b
-    bindsym 7 workspace 27b
-    bindsym 8 workspace 28b
-    bindsym 9 workspace 29b
-    bindsym 0 workspace 30b
-
-    # move focused container to workspace
-    bindsym Shift+1 move container to workspace 21b
-    bindsym Shift+2 move container to workspace 22b
-    bindsym Shift+3 move container to workspace 23b
-    bindsym Shift+4 move container to workspace 24b
-    bindsym Shift+5 move container to workspace 25b
-    bindsym Shift+6 move container to workspace 26b
-    bindsym Shift+7 move container to workspace 27b
-    bindsym Shift+8 move container to workspace 28b
-    bindsym Shift+9 move container to workspace 29b
-    bindsym Shift+0 move container to workspace 30b
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-mode "monitor3" {
-    bindsym 1 workspace 31
-    bindsym 2 workspace 32
-    bindsym 3 workspace 33
-    bindsym 4 workspace 34
-    bindsym 5 workspace 35
-    bindsym 6 workspace 36
-    bindsym 7 workspace 37
-    bindsym 8 workspace 38
-    bindsym 9 workspace 39
-    bindsym 0 workspace 40
-
-    # move focused container to workspace
-    bindsym Shift+1 move container to workspace 31
-    bindsym Shift+2 move container to workspace 32
-    bindsym Shift+3 move container to workspace 33
-    bindsym Shift+4 move container to workspace 34
-    bindsym Shift+5 move container to workspace 35
-    bindsym Shift+6 move container to workspace 36
-    bindsym Shift+7 move container to workspace 37
-    bindsym Shift+8 move container to workspace 38
-    bindsym Shift+9 move container to workspace 39
-    bindsym Shift+0 move container to workspace 40
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
 
 
 # Cycle through active workspaces
 bindsym Mod4+Tab workspace next
 bindsym Mod4+Shift+Tab workspace prev
-
 
 
 #
@@ -329,7 +243,8 @@ bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym Mod1+Shift+l exec i3lock -d -c 000000 -f
 # auto lock after 30min
 exec --no-startup-id xautolock -time 30 -locker 'i3lock -d -c 000000 -f'
-
+# autostart
+exec --no-startup-id hsetroot -center ~/.wallpaper.png
 
 
 #
@@ -342,13 +257,23 @@ bar {
     status_command i3status -c $HOME/.i3/i3status.conf
     tray_output primary
     position top
+
+    colors {
+        background #141c21
+        statusline #141c21
+        separator #141c21
+
+        # colour of border, background, and text
+        focused_workspace #141c21 #d12f2c #93a1a1
+        active_workspace #141c21 #141c21 #93a1a1
+        inactive_workspace #141c21 #141c21 #93a1a1
+        urgent_workspace #141c21 #b08500 #93a1a1
+	}
 }
 exec nm-applet
 
 # class                 border  backgr. text    indicator child_border
-#client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
 client.focused          #ffffff #0000ff #000000 #2e9ef4   #285577
-#client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.unfocused        #ffffff #000000 #ffffff #292d2e   #222222
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
