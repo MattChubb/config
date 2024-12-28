@@ -1,0 +1,35 @@
+# Aliases
+## Bash
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+## Git
+alias g='git'
+alias gg='git grep'
+alias gst='git status'
+alias gco='git checkout'
+alias gd='git diff'
+alias ga='git add'
+alias gcm='git commit -m'
+alias gps='git push'
+alias gpl='git pull'
+alias gsub='git submodule'
+alias master='git checkout master'
+
+alias wow='git status'
+alias such='git diff'
+alias so='git add'
+alias very='git commit -m'
+
+
+## Docker
+alias dockerprune='docker rm $(docker ps -a -q); docker rmi $(docker images | grep "^<none>" | awk "{print $3}")'
+alias dlf='docker logs -f '
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+
+## Tmux
+alias tat='tmux a -t'
+
+alias av='source venv/bin/activate'
