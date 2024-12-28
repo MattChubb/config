@@ -261,30 +261,47 @@ bar {
     tray_output primary
     position top
 
-    colors {
-#        background #141c21
-#        statusline #141c21
-#        separator #141c21
-        background #00000000
-        statusline #00000000
-        separator #00000000
+      colors {
+        background #282A36
+        statusline #F8F8F2
+        separator  #44475A
 
-        # colour of border, background, and text
-        focused_workspace #141c21 #d12f2c #93a1a1
-        active_workspace #141c21 #141c21 #93a1a1
-        inactive_workspace #141c21 #141c21 #93a1a1
-        urgent_workspace #141c21 #b08500 #93a1a1
-	}
+        focused_workspace  #44475A #44475A #F8F8F2
+        active_workspace   #282A36 #44475A #F8F8F2
+        inactive_workspace #282A36 #282A36 #BFBFBF
+        urgent_workspace   #FF5555 #FF5555 #F8F8F2
+        binding_mode       #FF5555 #FF5555 #F8F8F2
+    }
+
+#    colors {
+#        background #00000000
+#        statusline #00000000
+#        separator #00000000
+#
+#        # colour of border, background, and text
+#        focused_workspace #141c21 #d12f2c #93a1a1
+#        active_workspace #141c21 #141c21 #93a1a1
+#        inactive_workspace #141c21 #141c21 #93a1a1
+#        urgent_workspace #141c21 #b08500 #93a1a1
+#	}
 }
 exec nm-applet
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #ffffff #0000ff #000000 #2e9ef4   #285577
-client.unfocused        #ffffff #000000 #ffffff #292d2e   #222222
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-client.background       #ffffff
+#client.focused          #ffffff #0000ff #000000 #2e9ef4   #285577
+#client.unfocused        #ffffff #000000 #ffffff #292d2e   #222222
+#client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+#client.urgent           #2f343a #900000 #ffffff #900000   #900000
+#client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+#client.background       #ffffff
+
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+client.background       #F8F8F2
 
 ##Volume icon
 #exec volumeicon
